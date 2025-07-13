@@ -1,24 +1,18 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { MatchesModule } from './matches/matches.module';
+import { ChatsModule } from './chats/chats.module';
+import { databaseConfig } from './config/database.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '8426951', // directamente hardcodeada
-      database: 'ontomatch',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-      logging: true,
-    }),
+    TypeOrmModule.forRoot(databaseConfig),
     AuthModule,
     UsersModule,
+    MatchesModule,
+    ChatsModule,
   ],
 })
 export class AppModule {}

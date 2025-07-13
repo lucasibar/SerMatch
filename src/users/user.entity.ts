@@ -7,6 +7,9 @@ export class User {
   @Column() name: string;
   @Column({ unique: true }) email: string;
   @Column() password: string;
+  @Column({ nullable: true, type: 'text' }) profilePhoto: string; // base64
+  @Column({ nullable: true, type: 'text' }) bio: string;
+  @Column({ default: 'pareja' }) lookingFor: string;
 
   @CreateDateColumn() createdAt: Date;
 } 

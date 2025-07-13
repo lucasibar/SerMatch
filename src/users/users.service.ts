@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Not } from 'typeorm';
 import { User } from './user.entity';
 
 @Injectable()
@@ -17,5 +17,16 @@ export class UsersService {
 
   findByEmail(email: string) {
     return this.repo.findOneBy({ email });
+  }
+
+  findById(id: string) {
+    return this.repo.findOneBy({ id });
+  }
+
+  findAllExcept(excludeId: string) {
+    return this.repo.find({
+      where: { id: Not(excludeId) },
+      order: { createdAt: 'DESC' }
+    });
   }
 } 

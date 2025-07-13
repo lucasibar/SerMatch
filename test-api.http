@@ -1,0 +1,26 @@
+### Variables
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+### Registrar un nuevo usuario
+POST {{baseUrl}}/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "Usuario Test",
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+### Iniciar sesión
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+### Obtener perfil (requiere token)
+GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}} 
